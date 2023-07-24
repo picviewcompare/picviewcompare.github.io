@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='shortcut icon' href='https://easycss.github.io/favicon/favicon.png' type='image/x-icon' />
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <head>
+  <title>Image Grid App</title>
+</head>
+<body>
+   <div id="imageGrid">
+  
+    <div class="grid-item">
+      <input type="file" class="file-input" accept="image/*">
+      <img class="uploaded-image" data-index="0" src="#" alt="Click to upload an image">
+      <button onclick="toggleFullScreen(this)">Expand</button>
+    </div>
+    
+    <div class="grid-item">
+      <input type="file" class="file-input" accept="image/*">
+      <img class="uploaded-image" data-index="1" src="#" alt="Click to upload an image">
+      <button onclick="toggleFullScreen(this)">Expand</button>
+    </div>
+    
+    <div class="grid-item">
+      <input type="file" class="file-input" accept="image/*">
+      <img class="uploaded-image" data-index="2" src="#" alt="Click to upload an image">
+      <button onclick="toggleFullScreen(this)">Expand</button>
+    </div>
+  
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
