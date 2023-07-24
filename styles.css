@@ -9,6 +9,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  margin-top: -17px;
 }
 @media (min-width: 1300px){
     #imageGrid {
@@ -52,22 +53,16 @@ img {
 }
 
 /* Style the label to look like a button */
-.upload-label {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.upload-label, .clear-all-btn {
   background-color: rgba(255, 255, 255, 0.7);
   display: inline-block;
   padding: 0px;
   min-width: 100%;
-  font: .9rem/.1rem sans-serif;
+  font: clamp(.6rem, .8vw, 1.2rem)/.1rem sans-serif;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
   background-color: transparent;
-  color: #ccc;
   background-image: none !important;
   outline: none;
   border: 0;
@@ -76,6 +71,23 @@ img {
   text-shadow: none;
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
+}
+.upload-label{
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ddd;
+}
+.clear-all-btn{
+  position: relative;
+  /* min-width: 100%; */
+  margin-top: -25px;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-size: 12px;
+  color: #bbb;
 }
 .upload-label.image-has-been-uploaded{
   left: -48%;
@@ -125,5 +137,5 @@ img {
 @media (min-width: 1080px){
   .grid-item.full-screen img {
     object-fit: none;
-}
+  }
 }

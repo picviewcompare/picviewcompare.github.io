@@ -93,3 +93,17 @@ document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
 
 
 
+// Get a reference to the clear button
+const clearButton = document.getElementById('clearLocalStorageButton');
+
+// Add an event listener to the clear button
+clearButton.addEventListener('click', clearLocalStorage);
+
+// Function to clear the localStorage
+function clearLocalStorage() {
+  localStorage.removeItem('uploaded_images');
+
+  // Reload the page to refresh the image grid
+  location.reload();
+}
+
