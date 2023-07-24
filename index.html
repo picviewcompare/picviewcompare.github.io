@@ -12,23 +12,26 @@
 <body>
    <div id="imageGrid">
   
+
     <div class="grid-item">
-      <input type="file" class="file-input" accept="image/*">
-      <img class="uploaded-image" data-index="0" src="#" alt="Click to upload an image">
-      <button onclick="toggleFullScreen(this)">Expand</button>
-    </div>
+    <img class="uploaded-image" data-index="0" src="#" alt="Click to upload an image" onclick="toggleFullScreen(this)">
+    <input type="file" id="fileInput0" class="file-input" accept="image/*" onchange="handleImageUpload(event)">
+    <label class="upload-label" for="fileInput0">Upload Image</label>
+  </div>
     
     <div class="grid-item">
-      <input type="file" class="file-input" accept="image/*">
-      <img class="uploaded-image" data-index="1" src="#" alt="Click to upload an image">
-      <button onclick="toggleFullScreen(this)">Expand</button>
-    </div>
+    <img class="uploaded-image" data-index="1" src="#" alt="Click to upload an image" onclick="toggleFullScreen(this)">
+    <input type="file" id="fileInput0" class="file-input" accept="image/*" onchange="handleImageUpload(event)">
+    <label class="upload-label" for="fileInput0">Upload Image</label>
+  </div>
     
     <div class="grid-item">
-      <input type="file" class="file-input" accept="image/*">
-      <img class="uploaded-image" data-index="2" src="#" alt="Click to upload an image">
-      <button onclick="toggleFullScreen(this)">Expand</button>
-    </div>
+    <img class="uploaded-image" data-index="2" src="#" alt="Click to upload an image" onclick="toggleFullScreen(this)">
+    <input type="file" id="fileInput0" class="file-input" accept="image/*" onchange="handleImageUpload(event)">
+    <label class="upload-label" for="fileInput0">Upload Image</label>
+  </div>
+
+
   
     
   </div>

@@ -1,21 +1,17 @@
-const fileInputs = document.querySelectorAll('.file-input');
 const imageGrid = document.getElementById('imageGrid');
-
-fileInputs.forEach(fileInput => {
-  fileInput.addEventListener('change', handleImageUpload);
-});
+let currentImageIndex = 0; // Keep track of the current image index
 
 function handleImageUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
   const gridItem = event.target.parentElement;
   const imageElement = gridItem.querySelector('.uploaded-image');
+  const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
 
   reader.onload = function(event) {
     const imageURL = event.target.result;
-    const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
     imageElement.src = imageURL;
-    
+
     // Save the image data to localStorage
     saveImageData(imageIndex, imageURL);
   }
@@ -53,9 +49,6 @@ function getSavedImageArray() {
 
 loadImagesFromLocalStorage();
 
-
-
-
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.parentElement;
   if (!gridItem.classList.contains('full-screen')) {
@@ -79,5 +72,16 @@ function handleEscapeKey(event) {
   }
 }
 
+// Function to generate unique IDs for file input elements
+function generateUniqueInputIDs() {
+  const fileInputs = document.querySelectorAll('.file-input');
+  fileInputs.forEach((fileInput, index) => {
+    const uniqueID = `fileInput${index}`;
+    fileInput.id = uniqueID;
+    const label = fileInput.nextElementSibling;
+    label.setAttribute('for', uniqueID);
+  });
+}
 
-
+// Call the function to generate unique IDs after the page loads
+document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
