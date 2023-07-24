@@ -77,7 +77,11 @@ img {
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
 }
-
+.upload-label.image-has-been-uploaded{
+  left: -48%;
+  top: 50%;
+  transform: rotate(-90deg);
+}
 
 .uploaded-image {
   width: 100%;

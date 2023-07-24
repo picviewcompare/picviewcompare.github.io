@@ -7,6 +7,7 @@ function handleImageUpload(event) {
   const gridItem = event.target.closest('.grid-item');
   const imageElement = gridItem.querySelector('.uploaded-image');
   const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
+  const labelElement = gridItem.querySelector('.upload-label');
 
   reader.onload = function(event) {
     const imageURL = event.target.result;
@@ -14,6 +15,8 @@ function handleImageUpload(event) {
 
     // Save the image data to localStorage
     saveImageData(imageIndex, imageURL);
+    // Add a class to the label element to indicate that an image has been uploaded
+    labelElement.classList.add('image-has-been-uploaded');
   }
 
   if (file) {
@@ -33,11 +36,13 @@ function loadImagesFromLocalStorage() {
   for (let i = 0; i < imageGrid.children.length; i++) {
     const gridItem = imageGrid.children[i];
     const imageElement = gridItem.querySelector('.uploaded-image');
+    const labelElement = gridItem.querySelector('.upload-label');
     const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
     const imageURL = imageArray[imageIndex];
 
     if (imageURL) {
       imageElement.src = imageURL;
+      labelElement.classList.add('image-has-been-uploaded'); // Add the class if an image is present
     }
   }
 }
@@ -85,3 +90,6 @@ function generateUniqueInputIDs() {
 
 // Call the function to generate unique IDs after the page loads
 document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
+
+
+
