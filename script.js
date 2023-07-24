@@ -4,7 +4,7 @@ let currentImageIndex = 0; // Keep track of the current image index
 function handleImageUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
-  const gridItem = event.target.parentElement;
+  const gridItem = event.target.closest('.grid-item');
   const imageElement = gridItem.querySelector('.uploaded-image');
   const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
 
@@ -50,7 +50,7 @@ function getSavedImageArray() {
 loadImagesFromLocalStorage();
 
 function toggleFullScreen(imageElement) {
-  const gridItem = imageElement.parentElement;
+  const gridItem = imageElement.closest('.grid-item');
   if (!gridItem.classList.contains('full-screen')) {
     // Expand the image to full screen
     gridItem.classList.add('full-screen');
