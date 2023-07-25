@@ -1,13 +1,6 @@
 const imageGrid = document.getElementById('imageGrid');
 let currentImageIndex = 0;
 
-// let imageUploadData = {}; 
-// Store uploaded image data in memory before saving to localStorage
-
-// function saveImagesToLocalStorage() {
-//   localStorage.setItem('uploaded_images', JSON.stringify(imageUploadData));
-// }
-
 function handleImageUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
@@ -20,14 +13,10 @@ function handleImageUpload(event) {
     const imageURL = event.target.result;
     imageElement.src = imageURL;
 
-    // imageUploadData[imageIndex] = imageURL;
     saveImageData(imageIndex, imageURL);
 
     labelElement.classList.add('image-has-been-uploaded');
-    saveButton.classList.add('new-image-uploaded');
-    setTimeout(() => {
-      saveButton.classList.remove('new-image-uploaded');
-    }, 1000);
+    
   }
 
   if (file) {
@@ -117,8 +106,6 @@ function saveImageData(imageIndex, imageURL) {
 }
 
 function loadImagesFromLocalStorage() {
-  // const savedImageData = localStorage.getItem('uploaded_images');
-  // imageUploadData = savedImageData ? JSON.parse(savedImageData) : {};
   const imageArray = getSavedImageArray();
 
   for (let i = 0; i < imageGrid.children.length; i++) {
@@ -127,7 +114,6 @@ function loadImagesFromLocalStorage() {
     const labelElement = gridItem.querySelector('.upload-label');
     const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
  
-    // const imageURL = imageUploadData[imageIndex];
     const imageURL = imageArray[imageIndex];
 
     if (imageURL) {
@@ -156,18 +142,12 @@ function clearLocalStorage() {
   const userConfirmed = confirm("Are you sure? All images will be removed from the grid.");
   if (userConfirmed) {
     localStorage.removeItem('uploaded_images');
-    imagesSaved = false; // Set the flag to false since images are cleared
     location.reload();
   }
 }
 
 
-
-// const saveButton = document.getElementById('saveToLocalStorageButton');
-// saveButton.addEventListener('click', saveImagesToLocalStorage);
-
-
-// Upload Label
+// Upload Label add dynamic text based on image loaded in slot or not.
 const uploadLabels = document.querySelectorAll('#uploadLabel');
 
 uploadLabels.forEach(uploadLabel => {

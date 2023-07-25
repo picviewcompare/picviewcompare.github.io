@@ -5,13 +5,10 @@ body{
 img {
   position: relative;
   z-index: 1;
-  /* max-width: 100%; */
-  /* height: auto; */
 }
 
 #imageGrid {
   display: grid;
-  /* grid-template-columns: repeat(4, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 35px 35px;
   margin-top: 0px;
@@ -44,7 +41,6 @@ img {
 
 @media (min-width: 1730px){
   #imageGrid{
-    /* grid-template-columns: repeat(5, 1fr); */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
@@ -55,27 +51,9 @@ img {
   }
 }
 
-/* @media (min-width: 1530px){
-  #imageGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ));
-  grid-gap: 35px;
-  margin-top: 0px;
-  margin-bottom: 35px;
-  }
-} */
-
-/* @media (min-width: 1600px){
-    #imageGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  }
-} */
 
 .grid-item {
-  /* min-height: 300px; */
   text-align: center;
-  /* border: 1px solid grey; */
   position: relative;
   transition: all 0.3s ease;
   color: white;
@@ -85,7 +63,6 @@ img {
 .image-container {
   position: relative;
   z-index: 1;
-  /* margin-top: 8px; */
   width: 100%;
   padding-bottom: 100%;
   position: relative;
@@ -104,25 +81,24 @@ img {
   transition: all 500ms ease-in;
 }
 
-/* Hide the file input */
+/* Hide the file input selector */
 .file-input {
   display: none;
 }
-/* clear / save */
+/* clear all */
 .action-buttons{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 10px;
   margin-top: -14px;
   margin-bottom: 5px;
 }
 
 /* Style the label to look like a button */
-.upload-label, .clear-all-btn, .save-all-btn {
+.upload-label, .clear-all-btn {
   background-color: rgba(255, 255, 255, 0.7);
   display: inline-block;
   padding: 0px;
-  /* min-width: 100%; */
   font: clamp(.6rem, .8vw, 1.2rem)/.1rem sans-serif;
   text-align: center;
   vertical-align: middle;
@@ -131,8 +107,6 @@ img {
   background-image: none !important;
   outline: none;
   border: 0;
-  /* border-radius: 3px; */
-  /* -webkit-border-radius: 3px; */
   text-shadow: none;
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
@@ -193,9 +167,8 @@ img {
   }
 }
 
-.clear-all-btn, .save-all-btn{
+.clear-all-btn {
   position: relative;
-  /* min-width: 100%; */
   z-index: 2;
   background: #f33;
   color: #fff;
@@ -206,10 +179,7 @@ img {
   line-height: 10px;
   transition: all 100ms ease-in;
 }
-.save-all-btn{
-  background: #11cdb1;
-  color: white;
-}
+
 
 
 .uploaded-image {
@@ -235,11 +205,6 @@ img {
   transition: all 100ms ease-in;
 }
 
-/* .grid-item.full-screen .image-container {
-  max-width: 1400px;
-  object-fit: contain;
-  transition: all 100ms ease-in;
-} */
 
 .grid-item.full-screen img {
   width: 100%;
