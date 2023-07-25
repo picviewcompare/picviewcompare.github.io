@@ -91,7 +91,7 @@ img {
   position: relative;
   overflow: hidden;
   transition: all 500ms ease-in;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: #f3333311;
 }
 
 .image-container img {
@@ -108,9 +108,10 @@ img {
 .file-input {
   display: none;
 }
+/* clear / save */
 .action-buttons{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   margin-top: -14px;
   margin-bottom: 5px;
@@ -130,8 +131,8 @@ img {
   background-image: none !important;
   outline: none;
   border: 0;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
+  /* border-radius: 3px; */
+  /* -webkit-border-radius: 3px; */
   text-shadow: none;
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
@@ -141,9 +142,19 @@ img {
   position: absolute;
   z-index: 1;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 45%;
+  transform: translate(-40%, -50%);
   color: #ddd;
+  background: #552c6a;
+  padding: 5px;
+  user-select: none;
+}
+@media (min-width: 640px){
+  .upload-label{
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 10px;
+  }
 }
 .upload-label.image-has-been-uploaded{
   position: absolute;
@@ -151,9 +162,9 @@ img {
   left: -30px;
   top: 45%;
   transform: rotate(-90deg);
-  background-color: red;
-  color: white;
-  padding: 6px;
+  background-color: #12312355;
+  color: #ddd;
+  padding: 10px;
 }
 
 @media (min-width: 1300px){
@@ -186,7 +197,7 @@ img {
   position: relative;
   /* min-width: 100%; */
   z-index: 2;
-  background: red;
+  background: #f33;
   color: #fff;
   padding: 8px;
   border-radius: 0px;
@@ -195,7 +206,8 @@ img {
   line-height: 10px;
 }
 .save-all-btn{
-  background: green;
+  background: #11cdb1;
+  color: white;
 }
 
 

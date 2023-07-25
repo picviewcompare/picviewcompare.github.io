@@ -160,7 +160,7 @@ uploadLabels.forEach(uploadLabel => {
   if (uploadLabel.classList.contains("image-has-been-uploaded")) {
     uploadLabel.innerText = "Replace Image";
   } else {
-    uploadLabel.innerText = "Upload Image";
+    uploadLabel.innerText = "Add Image";
   }
 });
 
