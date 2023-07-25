@@ -1,5 +1,5 @@
 const imageGrid = document.getElementById('imageGrid');
-let currentImageIndex = 0; // Keep track of the current image index
+let currentImageIndex = 0;
 
 function handleImageUpload(event) {
   const file = event.target.files[0];
@@ -13,10 +13,8 @@ function handleImageUpload(event) {
     const imageURL = event.target.result;
     imageElement.src = imageURL;
 
-// Save the image data to localStorage
     saveImageData(imageIndex, imageURL);
 
-// Add a class to the label element to indicate that an image has been uploaded
     labelElement.classList.add('image-has-been-uploaded');
   }
 
@@ -29,11 +27,11 @@ function handleImageUpload(event) {
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
   if (!gridItem.classList.contains('full-screen')) {
-// Expand the image to full screen
+
     gridItem.classList.add('full-screen');
     document.addEventListener('keydown', handleEscapeKey);
   } else {
-// Return the image to the original position in the grid
+
     gridItem.classList.remove('full-screen');
     document.removeEventListener('keydown', handleEscapeKey);
   }
@@ -49,7 +47,7 @@ function handleEscapeKey(event) {
   }
 }
 
-// Function to generate unique IDs for file input elements
+
 function generateUniqueInputIDs() {
   const fileInputs = document.querySelectorAll('.file-input');
   fileInputs.forEach((fileInput, index) => {
@@ -60,7 +58,6 @@ function generateUniqueInputIDs() {
   });
 }
 
-// Call the function to generate unique IDs after the page loads
 document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
 
 
@@ -84,7 +81,7 @@ function loadImagesFromLocalStorage() {
 
     if (imageURL) {
       imageElement.src = imageURL;
-      labelElement.classList.add('image-has-been-uploaded'); // Add the class if an image is present
+      labelElement.classList.add('image-has-been-uploaded');
     }
   }
 }
@@ -96,17 +93,13 @@ function getSavedImageArray() {
 
 loadImagesFromLocalStorage();
 
-// Get a reference to the clear button
 const clearButton = document.getElementById('clearLocalStorageButton');
 
-// Add an event listener to the clear button
 clearButton.addEventListener('click', clearLocalStorage);
 
-// Function to clear the localStorage
 function clearLocalStorage() {
   localStorage.removeItem('uploaded_images');
 
-  // Reload the page to refresh the image grid
   location.reload();
 }
 
