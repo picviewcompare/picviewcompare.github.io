@@ -21,6 +21,10 @@ function handleImageUpload(event) {
     imageUploadData[imageIndex] = imageURL;
 
     labelElement.classList.add('image-has-been-uploaded');
+    saveButton.classList.add('new-image-uploaded');
+    setTimeout(() => {
+      saveButton.classList.remove('new-image-uploaded');
+    }, 1000);
   }
 
   if (file) {

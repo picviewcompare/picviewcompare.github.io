@@ -204,11 +204,33 @@ img {
   -webkit-border-radius: 0px;
   font-size: 12px;
   line-height: 10px;
+  transition: all 100ms ease-in;
 }
 .save-all-btn{
   background: #11cdb1;
   color: white;
 }
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+    background: #f33;
+    margin-left: 50px;
+  }
+  50% {
+    transform: scale(2);
+    background: #f33;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.save-all-btn.new-image-uploaded {
+  background: #11cdb1;
+  color: #fff;
+  animation: pulseAnimation 500ms;
+}
+
 
 
 .uploaded-image {
