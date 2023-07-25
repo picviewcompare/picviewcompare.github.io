@@ -25,15 +25,20 @@ function handleImageUpload(event) {
 }
 
 function toggleFullScreen(imageElement) {
-  const gridItem = imageElement.closest('.grid-item');
-  if (!gridItem.classList.contains('full-screen')) {
-    gridItem.classList.add('full-screen');
-    document.addEventListener('keydown', handleKeyPress);
-  } else {
-    gridItem.classList.remove('full-screen');
-    document.removeEventListener('keydown', handleKeyPress);
+    const gridItem = imageElement.closest('.grid-item');
+    const labelElement = gridItem.querySelector('.upload-label');
+
+    // Check if the label element has the "image-has-been-uploaded" class
+    if (labelElement.classList.contains('image-has-been-uploaded')) {
+      if (!gridItem.classList.contains('full-screen')) {
+        gridItem.classList.add('full-screen');
+        document.addEventListener('keydown', handleKeyPress);
+      } else {
+        gridItem.classList.remove('full-screen');
+        document.removeEventListener('keydown', handleKeyPress);
+      }
+    }
   }
-}
 
 
 
