@@ -1,3 +1,7 @@
+body{
+  margin: 18px 35px;
+  overflow-x: hidden;
+}
 img {
   position: relative;
   z-index: 1;
@@ -7,17 +11,67 @@ img {
 
 #imageGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  margin-top: -17px;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 35px 35px;
+  margin-top: 0px;
+  margin-bottom: 35px;
 }
-@media (min-width: 1300px){
-    #imageGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 10px; 
+
+@media (min-width: 570px){
+  #imageGrid{
+    grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media (min-width: 990px){
+  #imageGrid{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1205px){
+  #imageGrid{
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 1450px){
+  #imageGrid{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1730px){
+  #imageGrid{
+    /* grid-template-columns: repeat(5, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (min-width: 2000px){
+  #imageGrid {
+    grid-template-columns: repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ));
+  }
+}
+
+/* @media (min-width: 1530px){
+  #imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ));
+  grid-gap: 35px;
+  margin-top: 0px;
+  margin-bottom: 35px;
+  }
+} */
+
+/* @media (min-width: 1600px){
+    #imageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  }
+} */
+
 .grid-item {
   /* min-height: 300px; */
   text-align: center;
@@ -29,6 +83,9 @@ img {
 }
 
 .image-container {
+  position: relative;
+  z-index: 1;
+  /* margin-top: 8px; */
   width: 100%;
   padding-bottom: 100%;
   position: relative;
@@ -51,13 +108,20 @@ img {
 .file-input {
   display: none;
 }
+.action-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: -14px;
+  margin-bottom: 5px;
+}
 
 /* Style the label to look like a button */
-.upload-label, .clear-all-btn {
+.upload-label, .clear-all-btn, .save-all-btn {
   background-color: rgba(255, 255, 255, 0.7);
   display: inline-block;
   padding: 0px;
-  min-width: 100%;
+  /* min-width: 100%; */
   font: clamp(.6rem, .8vw, 1.2rem)/.1rem sans-serif;
   text-align: center;
   vertical-align: middle;
@@ -80,14 +144,20 @@ img {
   transform: translate(-50%, -50%);
   color: #ddd;
 }
-.clear-all-btn{
+.clear-all-btn, .save-all-btn{
   position: relative;
   /* min-width: 100%; */
-  margin-top: -25px;
+  z-index: 2;
+  background: red;
+  color: #fff;
+  padding: 8px;
   border-radius: 0px;
   -webkit-border-radius: 0px;
   font-size: 12px;
-  color: #bbb;
+  line-height: 10px;
+}
+.save-all-btn{
+  background: green;
 }
 .upload-label.image-has-been-uploaded{
   left: -48%;

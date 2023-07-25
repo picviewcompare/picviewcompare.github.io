@@ -153,3 +153,10 @@ function clearLocalStorage() {
 
 
 
+const resize = document.getElementById('resize');
+window.addEventListener(
+  "resize",
+  function () {
+    resize.innerText = window.innerWidth;
+  }
+)
