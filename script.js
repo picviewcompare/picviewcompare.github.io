@@ -34,6 +34,8 @@ function toggleFullScreen(imageElement) {
   }
 }
 
+
+
 function handleKeyPress(event) {
   if (event.key === 'Escape') {
     const fullscreenImage = document.querySelector('.full-screen');
@@ -46,34 +48,35 @@ function handleKeyPress(event) {
     if (fullscreenImage) {
       const imageElements = document.querySelectorAll('.uploaded-image');
       const fullscreenImageIndex = parseInt(fullscreenImage.getAttribute('data-index'), 10);
-      const lastIndex = imageElements.length - 1;
-      let newIndex;
+      const forward = event.key === 'ArrowRight';
+      const newIndex = findNextValidIndex(fullscreenImageIndex, forward, imageElements.length);
 
-      if (event.key === 'ArrowLeft') {
-        newIndex = fullscreenImageIndex === 0 ? lastIndex : fullscreenImageIndex - 1;
-      } else {
-        newIndex = fullscreenImageIndex === lastIndex ? 0 : fullscreenImageIndex + 1;
-      }
-
-      // Find the next valid img element by skipping empty grid-items
-      let nextImage = null;
-      for (let i = 0; i < imageElements.length; i++) {
-        const imgIndex = parseInt(imageElements[i].getAttribute('data-index'), 10);
-        if (!isNaN(imgIndex) && imgIndex === newIndex) {
-          nextImage = imageElements[i];
-          break;
-        }
-      }
-
-      if (nextImage) {
+      if (newIndex !== null) {
+        const nextImage = imageElements[newIndex];
         const fullscreenGridItem = fullscreenImage.closest('.grid-item');
         fullscreenGridItem.classList.remove('full-screen');
-        document.removeEventListener('keydown', handleKeyPress);
         toggleFullScreen(nextImage);
       }
     }
   }
 }
+
+function findNextValidIndex(currentIndex, forward = true, maxIndex) {
+  let nextIndex = currentIndex;
+  const step = forward ? 1 : -1;
+
+  do {
+    nextIndex = (nextIndex + step + maxIndex) % maxIndex;
+  } while (!getSavedImageArray()[nextIndex] && nextIndex !== currentIndex);
+
+  if (nextIndex === currentIndex) {
+    return null; // No valid image found in the given direction.
+  }
+
+  return nextIndex;
+}
+
+
 
 
 function generateUniqueInputIDs() {
@@ -146,4 +149,7 @@ function clearLocalStorage() {
 
   location.reload();
 }
+
+
+
 
