@@ -157,18 +157,3 @@ uploadLabels.forEach(uploadLabel => {
     uploadLabel.innerText = "Add Image";
   }
 });
-
-
-// 
-// 
-// 
-/* Display viewport width data on screen when browser is resized */ 
-// 
-
-// const resize = document.getElementById('resize');
-// window.addEventListener(
-//   "resize",
-//   function () {
-//     resize.innerText = window.innerWidth;
-//   }
-// )
