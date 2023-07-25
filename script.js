@@ -101,18 +101,6 @@ document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // 
 // LOCALSTORAGE
 function saveImageData(imageIndex, imageURL) {
@@ -146,6 +134,9 @@ function getSavedImageArray() {
 
 loadImagesFromLocalStorage();
 
+
+
+
 // ACTION BUTTONS
 const clearButton = document.getElementById('clearLocalStorageButton');
 clearButton.addEventListener('click', clearLocalStorage);
@@ -162,16 +153,28 @@ const saveButton = document.getElementById('saveToLocalStorageButton');
 saveButton.addEventListener('click', saveImagesToLocalStorage);
 
 
+// Upload Label
+const uploadLabels = document.querySelectorAll('#uploadLabel');
+
+uploadLabels.forEach(uploadLabel => {
+  if (uploadLabel.classList.contains("image-has-been-uploaded")) {
+    uploadLabel.innerText = "Replace Image";
+  } else {
+    uploadLabel.innerText = "Upload Image";
+  }
+});
+
+
 // 
 // 
 // 
 /* Display viewport width data on screen when browser is resized */ 
 // 
 
-const resize = document.getElementById('resize');
-window.addEventListener(
-  "resize",
-  function () {
-    resize.innerText = window.innerWidth;
-  }
-)
+// const resize = document.getElementById('resize');
+// window.addEventListener(
+//   "resize",
+//   function () {
+//     resize.innerText = window.innerWidth;
+//   }
+// )

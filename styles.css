@@ -136,6 +136,7 @@ img {
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
 }
+
 .upload-label{
   position: absolute;
   z-index: 1;
@@ -144,6 +145,43 @@ img {
   transform: translate(-50%, -50%);
   color: #ddd;
 }
+.upload-label.image-has-been-uploaded{
+  position: absolute;
+  z-index: 1;
+  left: -30px;
+  top: 45%;
+  transform: rotate(-90deg);
+  background-color: red;
+  color: white;
+  padding: 6px;
+}
+
+@media (min-width: 1300px){
+  .upload-label.image-has-been-uploaded{
+    left: -35px;
+  }
+}
+@media (min-width: 1500px){
+  .upload-label.image-has-been-uploaded{
+    left: -40px;
+  }
+}
+@media (min-width: 1700px){
+  .upload-label.image-has-been-uploaded{
+    left: -45px;
+  }
+}
+@media (min-width: 1850px){
+  .upload-label.image-has-been-uploaded{
+    left: -50px;
+  }
+}
+@media (min-width: 2200px){
+  .upload-label.image-has-been-uploaded{
+    left: -60px;
+  }
+}
+
 .clear-all-btn, .save-all-btn{
   position: relative;
   /* min-width: 100%; */
@@ -159,11 +197,7 @@ img {
 .save-all-btn{
   background: green;
 }
-.upload-label.image-has-been-uploaded{
-  left: -48%;
-  top: 50%;
-  transform: rotate(-90deg);
-}
+
 
 .uploaded-image {
   width: 100%;
@@ -171,9 +205,6 @@ img {
   object-fit: cover;
   transition: all 100ms ease-in;
 }
-
-
-
 
 /* Full-screen styles */
 .grid-item.full-screen {
