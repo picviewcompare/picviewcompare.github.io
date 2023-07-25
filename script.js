@@ -157,7 +157,7 @@ const uploadLabels = document.querySelectorAll('#uploadLabel');
 
 uploadLabels.forEach(uploadLabel => {
   if (uploadLabel.classList.contains("image-has-been-uploaded")) {
-    uploadLabel.innerText = "Replace Image";
+    uploadLabel.innerText = "Swap Image";
   } else {
     uploadLabel.innerText = "Add Image";
   }
