@@ -105,9 +105,21 @@ document.addEventListener('DOMContentLoaded', generateUniqueInputIDs);
 // 
 // LOCALSTORAGE
 function saveImageData(imageIndex, imageURL) {
-  const imageArray = getSavedImageArray();
-  imageArray[imageIndex] = imageURL;
-  localStorage.setItem('uploaded_images', JSON.stringify(imageArray));
+  try {
+    const imageArray = getSavedImageArray();
+    imageArray[imageIndex] = imageURL;
+    localStorage.setItem('uploaded_images', JSON.stringify(imageArray));
+  } catch (error) {
+    // Catch the DOMException if storage quota is exceeded
+      if (error instanceof DOMException && (
+          error.name === 'QuotaExceededError' ||
+          error.name === 'NS_ERROR_DOM_QUOTA_REACHED')) {
+
+        alert('Brower Local Storage quota exceeded. Cannot save data. Consider reducing the size of your images and try again.');
+      } else {
+        console.error('Error while saving data:', error);
+      }
+  }
 }
 
 function loadImagesFromLocalStorage() {
