@@ -14,17 +14,15 @@ img {
   display: inline-block;
 } 
 }
+
+
 #imageGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 35px 35px;
   margin-top: 0px;
   margin-bottom: 35px;
-  
-  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-  grid-template-columns: repeat(3, 1fr);
 }
-
-
 /* 
 @media (min-width: 570px){
   #imageGrid{
@@ -60,9 +58,7 @@ img {
   #imageGrid {
     grid-template-columns: repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ));
   }
-}
- */
-
+} */
 
 
 .grid-item {
