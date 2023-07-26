@@ -41,7 +41,6 @@ function handleImageUpload(event) {
   }
 }
 
-
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
   const labelElement = gridItem.querySelector('.upload-label');
@@ -57,15 +56,25 @@ function toggleFullScreen(imageElement) {
   }
 }
 
+// Add the escape key event listener during the initialization
+document.addEventListener('keydown', handleKeyPress);
+
+
 function handleKeyPress(event) {
-  if (event.key === 'Escape') {
-    const fullscreenImage = document.querySelector('.full-screen');
-    if (fullscreenImage) {
-      fullscreenImage.classList.remove('full-screen');
-      document.removeEventListener('keydown', handleKeyPress);
+    if (event.key === 'Escape') {
+      const fullscreenImage = document.querySelector('.full-screen .uploaded-image');
+      const fullscreenGridItem = fullscreenImage?.closest('.grid-item');
+
+    if (fullscreenGridItem) {
+      fullscreenGridItem.classList.remove('full-screen');
     }
-    
-     
+
+    const overlay = document.querySelector('.overlay');
+    if (overlay) {
+      document.body.removeChild(overlay);
+      removeAllSelectedClasses();
+    }
+
   } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     const fullscreenImage = document.querySelector('.full-screen .uploaded-image');
     if (fullscreenImage) {
@@ -232,6 +241,7 @@ function handleButtonMouseUp(event) {
   event.preventDefault(); // Prevent button focus on click
 }
 
+
 function openImagesSideBySide(src1, src2) {
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
@@ -256,6 +266,8 @@ function openImagesSideBySide(src1, src2) {
     document.body.removeChild(overlay);
     removeAllSelectedClasses();
   });
+
+  return overlay;
 }
 
 function updateNumberedButtons() {
