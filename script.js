@@ -1,10 +1,8 @@
 const imageGrid = document.getElementById('imageGrid');
-let currentImageIndex = 0;
 const imageArray = getInitialImageArray();
 
 let clickCount = 0;
 let lastButtonIndex = -1;
-const clickThreshold = 300; // Adjust the threshold in milliseconds as needed.
 let firstButtonIndex = -1;
 let secondButtonIndex = -1;
 
@@ -16,6 +14,7 @@ function handleImageUpload(event) {
   const imageElement = gridItem.querySelector('.uploaded-image');
   const imageIndex = parseInt(imageElement.getAttribute('data-index'), 10);
   const labelElement = gridItem.querySelector('.upload-label');
+  const numberedButton = document.querySelector(`.image-btn[data-index="${imageIndex}"]`);
 
   reader.onload = function(event) {
     const imageURL = event.target.result;
@@ -24,13 +23,24 @@ function handleImageUpload(event) {
     saveImageData(imageIndex, imageURL);
 
     labelElement.classList.add('image-has-been-uploaded');
-    // updateUploadLabels();
+
+    numberedButton.classList.remove('disabled'); // Enable the corresponding numbered button
   };
+
+  // If the file input is empty (image removed), update the UI accordingly
+  if (!file) {
+    imageElement.src = ''; // Clear the image source
+    saveImageData(imageIndex, null); // Save the empty image URL
+    labelElement.classList.remove('image-has-been-uploaded');
+
+    numberedButton.classList.add('disabled'); // Disable the corresponding numbered button
+  }
 
   if (file) {
     reader.readAsDataURL(file);
   }
 }
+
 
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
@@ -54,6 +64,8 @@ function handleKeyPress(event) {
       fullscreenImage.classList.remove('full-screen');
       document.removeEventListener('keydown', handleKeyPress);
     }
+    
+     
   } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
     const fullscreenImage = document.querySelector('.full-screen .uploaded-image');
     if (fullscreenImage) {
@@ -123,6 +135,7 @@ function updateUploadLabels() {
       uploadLabel.innerText = "Add Image";
     }
   });
+  updateNumberedButtons();
 }
 
 loadImagesFromMemory();
@@ -155,6 +168,7 @@ function renderButtons() {
     const button = document.createElement('button');
     button.innerText = `${i + 1}`;
     button.classList.add("image-btn");
+    button.classList.add("disabled");
     button.dataset.index = i;
     button.addEventListener('click', handleButtonClick);
     buttonContainer.appendChild(button);
@@ -244,6 +258,18 @@ function openImagesSideBySide(src1, src2) {
   });
 }
 
+function updateNumberedButtons() {
+  const buttons = document.querySelectorAll('.image-btn');
+  buttons.forEach((button, index) => {
+    const imageURL = imageArray[index];
+    if (imageURL) {
+      button.classList.remove('disabled');
+    } else {
+      button.classList.add('disabled');
+    }
+  });
+}
+
 
 
 function createImageElement(src) {
@@ -257,14 +283,3 @@ renderButtons();
 
 
 
-
-// 
-// 
-// 
-// const resize = document.getElementById('printViewportWidth');
-// window.addEventListener(
-//   "resize",
-//   function () {
-//     printViewportWidth.innerText = window.innerWidth;
-//   }
-// )

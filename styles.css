@@ -138,6 +138,12 @@ h1{
   background-color: #007bff;
   color: #fff;
 }
+.image-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none; 
+  cursor: not-allowed; 
+}
+
 
 .upload-label{
   position: absolute;
