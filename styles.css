@@ -23,7 +23,7 @@ img {
   margin-top: 0px;
   margin-bottom: 35px;
 }
-/* 
+
 @media (min-width: 570px){
   #imageGrid{
     grid-template-columns: repeat(3, 1fr);
@@ -58,7 +58,7 @@ img {
   #imageGrid {
     grid-template-columns: repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ));
   }
-} */
+}
 
 
 .grid-item {

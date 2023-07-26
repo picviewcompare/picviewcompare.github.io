@@ -141,80 +141,6 @@ function loadImagesFromMemory() {
 // 
 
 
-// Slider
-const gridSizeSlider = document.getElementById('gridSizeSlider');
-gridSizeSlider.addEventListener('input', handleGridSizeChange);
-
-function getViewportSize() {
-  const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  return { width, height };
-}
-
-function getColumnWidthFromGridTemplate() {
-  const imageGrid = document.getElementById('imageGrid');
-  const gridTemplateColumns = window.getComputedStyle(imageGrid).gridTemplateColumns;
-  const columns = gridTemplateColumns.split(' ');
-  const firstColumnWidth = parseInt(columns[0], 10);
-  return firstColumnWidth;
-}
-
-function setSliderAttributesForViewport(viewportWidth) {
-  const minColumnWidth = getColumnWidthFromGridTemplate();
-  const maxSliderValue = Math.floor(viewportWidth / 12); // Set the maximum to viewportWidth / 12
-
-  gridSizeSlider.min = `${minColumnWidth}`;
-  gridSizeSlider.max = `${maxSliderValue}`;
-  gridSizeSlider.step = 10;
-  gridSizeSlider.value = minColumnWidth; // Set the initial value to the minimum column width
-}
-
-function updateGridTemplateColumns() {
-  const viewportSize = getViewportSize();
-  const imageGrid = document.getElementById('imageGrid');
-
-  if (viewportSize.width >= 2000) {
-    imageGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax( calc(100% / 6 - 35px), 1fr ))';
-  } else if (viewportSize.width >= 1730) {
-    imageGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
-  } else if (viewportSize.width >= 1450) {
-    imageGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
-  } else if (viewportSize.width >= 1205) {
-    imageGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 1fr))';
-  } else if (viewportSize.width >= 990) {
-    imageGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
-  } else if (viewportSize.width >= 570) {
-    imageGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-  } else {
-    // For viewport widths less than 570px (fallback)
-    // imageGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    null;
-  }
-
-  setSliderAttributesForViewport(viewportSize.width); // Update slider attributes after changing grid-template-columns
-}
-
-// Set initial grid template columns and slider attributes
-updateGridTemplateColumns();
-
-// Update grid template columns and slider attributes when the viewport is resized
-window.addEventListener('resize', updateGridTemplateColumns);
-
-function handleGridSizeChange() {
-  const gridSize = gridSizeSlider.value;
-  setGridItemSize(gridSize);
-}
-
-function setGridItemSize(size) {
-  const gridItems = document.querySelectorAll('.grid-item');
-  gridItems.forEach((item) => {
-    item.style.width = `${size}px`;
-    item.style.height = `${size}px`;
-  });
-}
-
-
-
 
 
 
@@ -223,10 +149,10 @@ function setGridItemSize(size) {
 // 
 // 
 // 
-const resize = document.getElementById('resize');
-window.addEventListener(
-  "resize",
-  function () {
-    resize.innerText = window.innerWidth;
-  }
-)
+// const resize = document.getElementById('printViewportWidth');
+// window.addEventListener(
+//   "resize",
+//   function () {
+//     printViewportWidth.innerText = window.innerWidth;
+//   }
+// )
