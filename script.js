@@ -133,3 +133,75 @@ function loadImagesFromMemory() {
     }
   }
 }
+
+
+// 
+// 
+// 
+// 
+
+
+// Slider
+const gridSizeSlider = document.getElementById('gridSizeSlider');
+gridSizeSlider.addEventListener('input', handleGridSizeChange);
+
+function getViewportSize() {
+  const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  return { width, height };
+}
+
+function setSliderAttributesForViewport(width) {
+  if (width >= 768) {
+    gridSizeSlider.min = 220;
+    gridSizeSlider.max = 500;
+    gridSizeSlider.step = 10;
+    gridSizeSlider.value = 200;
+  } else {
+    // Set different attributes for smaller viewport sizes
+    gridSizeSlider.min = 100;
+    gridSizeSlider.max = 300;
+    gridSizeSlider.step = 5;
+    gridSizeSlider.value = 150;
+  }
+}
+
+
+// Get viewport size and set slider attributes initially
+const viewportSize = getViewportSize();
+setSliderAttributesForViewport(viewportSize.width);
+
+// Update slider attributes when the viewport is resized
+window.addEventListener('resize', () => {
+  const viewportSize = getViewportSize();
+  setSliderAttributesForViewport(viewportSize.width);
+});
+
+
+function handleGridSizeChange() {
+  const gridSize = gridSizeSlider.value;
+  setGridItemSize(gridSize);
+}
+
+function setGridItemSize(size) {
+  const gridItems = document.querySelectorAll('.grid-item');
+  gridItems.forEach((item) => {
+    item.style.width = `${size}px`;
+    item.style.height = `${size}px`;
+  });
+}
+
+
+
+
+
+// 
+// 
+// 
+const resize = document.getElementById('resize');
+window.addEventListener(
+  "resize",
+  function () {
+    resize.innerText = window.innerWidth;
+  }
+)
