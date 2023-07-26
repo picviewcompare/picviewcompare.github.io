@@ -2,6 +2,13 @@ const imageGrid = document.getElementById('imageGrid');
 let currentImageIndex = 0;
 const imageArray = getInitialImageArray();
 
+let clickCount = 0;
+let lastButtonIndex = -1;
+const clickThreshold = 300; // Adjust the threshold in milliseconds as needed.
+let firstButtonIndex = -1;
+let secondButtonIndex = -1;
+
+
 function handleImageUpload(event) {
   const file = event.target.files[0];
   const reader = new FileReader();
@@ -141,7 +148,112 @@ function loadImagesFromMemory() {
 // 
 
 
+function renderButtons() {
+  const buttonContainer = document.getElementById('buttonContainer');
 
+  for (let i = 0; i < imageGrid.children.length; i++) {
+    const button = document.createElement('button');
+    button.innerText = `${i + 1}`;
+    button.classList.add("image-btn");
+    button.dataset.index = i;
+    button.addEventListener('click', handleButtonClick);
+    buttonContainer.appendChild(button);
+  }
+}
+
+function removeAllSelectedClasses() {
+  const buttons = document.querySelectorAll('.image-btn');
+  buttons.forEach(button => button.classList.remove('selected'));
+}
+
+function handleButtonClick(event) {
+  const buttonIndex = parseInt(event.target.dataset.index, 10);
+
+  if (firstButtonIndex === -1) {
+    removeAllSelectedClasses(); // Remove the .selected class from all buttons
+    firstButtonIndex = buttonIndex;
+    event.target.classList.add('selected'); // Add the .selected class to the first button
+  } else if (secondButtonIndex === -1 && firstButtonIndex !== buttonIndex) {
+    removeAllSelectedClasses(); // Remove the .selected class from all buttons
+    secondButtonIndex = buttonIndex;
+    event.target.classList.add('selected'); // Add the .selected class to the second button
+
+    const imageElement1 = imageGrid.children[firstButtonIndex].querySelector('.uploaded-image');
+    const imageElement2 = imageGrid.children[secondButtonIndex].querySelector('.uploaded-image');
+
+    if (imageElement1 && imageElement2) {
+      openImagesSideBySide(imageElement1.src, imageElement2.src);
+    }
+
+    firstButtonIndex = -1;
+    secondButtonIndex = -1;
+  }
+}
+
+
+function handleButtonMouseDown(event) {
+  const buttonIndex = parseInt(event.target.dataset.index, 10);
+
+  if (buttonIndex === lastButtonIndex) {
+    clickCount++;
+  } else {
+    clickCount = 1;
+    lastButtonIndex = buttonIndex;
+  }
+
+  if (clickCount === 2) {
+    const imageElement1 = imageGrid.children[lastButtonIndex].querySelector('.uploaded-image');
+    const imageElement2 = imageGrid.children[buttonIndex].querySelector('.uploaded-image');
+
+    if (imageElement1 && imageElement2) {
+      openImagesSideBySide(imageElement1.src, imageElement2.src);
+    }
+
+    event.target.classList.remove('selected');
+    clickCount = 0;
+  }
+}
+
+function handleButtonMouseUp(event) {
+  event.preventDefault(); // Prevent button focus on click
+}
+
+function openImagesSideBySide(src1, src2) {
+  const overlay = document.createElement('div');
+  overlay.classList.add('overlay');
+
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  const leftImage = createImageElement(src1);
+  const rightImage = createImageElement(src2);
+
+  const imageContainer = document.createElement('div');
+  imageContainer.classList.add('splitscreen-container');
+  imageContainer.appendChild(leftImage);
+  imageContainer.appendChild(rightImage);
+
+  modal.appendChild(imageContainer);
+  overlay.appendChild(modal);
+
+  document.body.appendChild(overlay);
+
+  overlay.addEventListener('click', () => {
+    document.body.removeChild(overlay);
+    removeAllSelectedClasses();
+  });
+}
+
+
+
+function createImageElement(src) {
+  const image = document.createElement('img');
+  image.src = src;
+  image.classList.add('modal-image');
+  return image;
+}
+
+renderButtons();
 
 
 

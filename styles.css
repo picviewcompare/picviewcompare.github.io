@@ -18,7 +18,8 @@ img {
 
 #imageGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 35px 35px;
   margin-top: 0px;
   margin-bottom: 35px;
@@ -110,8 +111,9 @@ h1{
   background-color: #84edb2;
   color: #123;
 }
+
 /* Style the label to look like a button */
-.upload-label, .clear-all-btn {
+.upload-label, .clear-all-btn, .image-btn {
   background-color: rgba(255, 255, 255, 0.7);
   display: inline-block;
   padding: 0px;
@@ -125,6 +127,16 @@ h1{
   text-shadow: none;
   box-shadow: none;
   transition: all 0.12s linear 0s !important;
+}
+/* numbered buttons when active */
+.image-btn{
+  border: 1px solid grey;
+  padding: 4px;
+  margin-left: 4px;
+}
+.image-btn.selected {
+  background-color: #007bff;
+  color: #fff;
 }
 
 .upload-label{
@@ -233,4 +245,46 @@ h1{
   .grid-item.full-screen img {
     object-fit: none;
   }
+}
+
+
+.overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  /* max-width: 1000px;
+  max-height: 600px; */
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white; /* Add a background color to the modal */
+  padding: 20px; /* Add padding for better aesthetics */
+}
+
+.modal-image {
+  max-width: 45%;
+  max-height: 100%;
+}
+
+/* Additional styles for the image container to control the spacing between images */
+.splitscreen-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
