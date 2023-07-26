@@ -98,8 +98,9 @@ img {
 /* clear all */
 .action-buttons{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  align-items: center;
   margin-top: -14px;
   margin-bottom: 5px;
 }
@@ -107,6 +108,10 @@ h1{
   display: none;
 }
 @media (min-width: 480px){
+  .action-buttons{
+    flex-direction: row;
+    margin-bottom: 5px;
+  }
   h1{
     display: inline-block;
     padding: 0;
@@ -139,6 +144,11 @@ h1{
   border: 1px solid grey;
   padding: 4px;
   margin-left: 4px;
+}
+@media (min-width: 480px){
+  .image-btn{
+    padding: 8px;
+  }
 }
 .image-btn.selected {
   background-color: #007bff;
@@ -205,19 +215,6 @@ h1{
   .upload-label.image-has-been-uploaded{
     left: -60px;
   }
-}
-
-.clear-all-btn {
-  position: relative;
-  z-index: 2;
-  background: #f33;
-  color: #fff;
-  padding: 8px;
-  border-radius: 0px;
-  -webkit-border-radius: 0px;
-  font: clamp(.6rem, .8vw, 1.2rem)/.1rem monospace;
-  line-height: 10px;
-  transition: all 100ms ease-in;
 }
 
 
@@ -299,4 +296,21 @@ h1{
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+
+/* github svg */
+.github {
+  align-self: center;
+  /* margin: 40px 0 80px; */
+}
+.github img{
+  width: 30px;
+  height: auto;
+}
+
+@media (min-width: 769px){
+  .github {
+    margin: 0px 0px 0px;
+  }
 }
