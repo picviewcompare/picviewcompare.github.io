@@ -1,6 +1,6 @@
 # TODO
-- issue with small images on smaller screens (object-fit: contain) causes image to bloat
 
+- style single image full screen same as dual image full screen with white background.
 
 ```
 /* Display viewport width data on screen when browser is resized */ 
