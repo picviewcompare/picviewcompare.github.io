@@ -296,6 +296,9 @@ function handleButtonMouseUp(event) {
 }
 
 
+
+
+
 function openImagesSideBySide(src1, src2) {
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
@@ -311,6 +314,30 @@ function openImagesSideBySide(src1, src2) {
   imageContainer.appendChild(leftImage);
   imageContainer.appendChild(rightImage);
 
+  function handleResize() {
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth < 1200) {
+      // Reset image heights to auto and set max-width and max-height to 100%
+      leftImage.style.height = 'auto';
+      rightImage.style.height = 'auto';
+      leftImage.style.maxWidth = '100%';
+      rightImage.style.maxWidth = '100%';
+
+      // Add the 'responsive' class to the .splitscreen-container
+      imageContainer.classList.add('responsive');
+    } else {
+      // Remove the 'responsive' class for viewports larger than 1200px
+      imageContainer.classList.remove('responsive');
+
+      // Set max-width and max-height to 1200px to enforce the maximum dimensions
+      leftImage.style.maxHeight = '1200px';
+      rightImage.style.maxHeight = '1200px';
+    }
+  }
+
+  // Handle resizing on window resize events
+  window.addEventListener('resize', handleResize);
+
   modal.appendChild(imageContainer);
   overlay.appendChild(modal);
 
@@ -321,8 +348,18 @@ function openImagesSideBySide(src1, src2) {
     removeAllSelectedClasses();
   });
 
+  // Trigger initial resizing
+  handleResize();
+
   return overlay;
 }
+
+
+
+
+
+
+
 
 function updateNumberedButtons() {
   const buttons = document.querySelectorAll('.image-btn');
