@@ -79,6 +79,8 @@ img {
   overflow: hidden;
   transition: all 500ms ease-in;
   background-color: #f3333311;
+  /* background-color: #202123; */
+  /* background-color: #575159; */
 }
 
 .image-container img {
@@ -229,12 +231,12 @@ h1{
 /* Full-screen styles */
 .grid-item.full-screen {
   position: fixed;
+  z-index: 9999;
   top: 0;
   left: 0;
-  z-index: 9999;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background: white;
   cursor: pointer;
   display: flex;
   justify-content: center; 
@@ -248,24 +250,26 @@ h1{
   height: 100%;
   object-fit: contain;
   transition: all 100ms ease-in;
+  background: white;
 }
 
-/* @media (min-width: 1080px){
+/* @media (min-width: 1500px){
   .grid-item.full-screen img {
-    object-fit: none;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 } */
 
 
 .overlay {
-  display: block;
   position: fixed;
+  z-index: 9999;
+  display: block;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9999;
   cursor: pointer;
 }
 
