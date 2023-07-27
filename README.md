@@ -1,6 +1,6 @@
 # TODO
 
-- style single image full screen same as dual image full screen with white background.
+- configure image max size in dual image full screen same as single fullscreen view (max height 1200px)
 - resize image on upload
 
 
