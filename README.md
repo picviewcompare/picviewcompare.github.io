@@ -3,8 +3,8 @@
 
 # TODO
 
-- configure image max size in dual image full screen same as single fullscreen view (max height 1200px)
-- resize image on upload
+
+
 
 
 

@@ -316,6 +316,14 @@ h1{
   height: 100%;
 }
 
+/* Additional styles for the image elements to preserve aspect ratio and scale down to fit within the container */
+.splitscreen-container img {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
 /* github svg */
 .github {
   align-self: center;
