@@ -72,7 +72,7 @@ function toggleFullScreen(imageElement) {
       uploadedImage.style.width = 'auto'; 
       uploadedImage.style.height = 'auto';
       
-      document.removeEventListener('keydown', handleKeyPress);
+      // document.removeEventListener('keydown', handleKeyPress);
     }
   }
 }
