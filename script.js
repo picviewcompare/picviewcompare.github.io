@@ -53,6 +53,7 @@ function toggleFullScreen(imageElement) {
 
       // Calculate the maximum height allowed (1200px) for the image in full-screen mode
       const maxHeight = 1200;
+      imageContainer.style.backgroundColor = "white";
       const containerHeight = imageContainer.clientHeight;
       const containerWidth = imageContainer.clientWidth;
       const imageNaturalWidth = uploadedImage.naturalWidth;
@@ -67,8 +68,12 @@ function toggleFullScreen(imageElement) {
       document.addEventListener('keydown', handleKeyPress);
     } else {
       gridItem.classList.remove('full-screen');
-      uploadedImage.style.width = 'auto'; // Reset to the original dimensions
+
+      // Reset to the original dimensions/style
+      imageContainer.style.backgroundColor = "#f3333311";
+      uploadedImage.style.width = 'auto'; 
       uploadedImage.style.height = 'auto';
+      
       document.removeEventListener('keydown', handleKeyPress);
     }
   }
