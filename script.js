@@ -44,17 +44,65 @@ function handleImageUpload(event) {
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
   const labelElement = gridItem.querySelector('.upload-label');
+  const imageContainer = gridItem.querySelector('.image-container');
+  const uploadedImage = gridItem.querySelector('.uploaded-image');
 
   if (labelElement.classList.contains('image-has-been-uploaded')) {
     if (!gridItem.classList.contains('full-screen')) {
       gridItem.classList.add('full-screen');
+
+      // Calculate the maximum height allowed (1200px) for the image in full-screen mode
+      const maxHeight = 1200;
+      const containerHeight = imageContainer.clientHeight;
+      const containerWidth = imageContainer.clientWidth;
+      const imageNaturalWidth = uploadedImage.naturalWidth;
+      const imageNaturalHeight = uploadedImage.naturalHeight;
+      const maxImageHeight = Math.min(maxHeight, imageNaturalHeight, containerHeight);
+      const maxImageWidth = (maxImageHeight / imageNaturalHeight) * imageNaturalWidth;
+
+      // Apply the calculated dimensions to the image
+      uploadedImage.style.width = `${maxImageWidth}px`;
+      uploadedImage.style.height = `${maxImageHeight}px`;
+
       document.addEventListener('keydown', handleKeyPress);
     } else {
       gridItem.classList.remove('full-screen');
+      uploadedImage.style.width = 'auto'; // Reset to the original dimensions
+      uploadedImage.style.height = 'auto';
       document.removeEventListener('keydown', handleKeyPress);
     }
   }
 }
+
+// Function to update the image size based on the window width for viewports below 1200px
+function updateImageSize() {
+  const viewportWidth = window.innerWidth;
+  const gridItems = document.querySelectorAll('.grid-item');
+
+  if (viewportWidth < 1200) {
+    gridItems.forEach((gridItem) => {
+      if (gridItem.classList.contains('full-screen')) {
+        // Calculate the maximum height allowed (100% of the viewport) for the image
+        const maxHeight = window.innerHeight;
+        const imageContainer = gridItem.querySelector('.image-container');
+        const containerHeight = imageContainer.clientHeight;
+        const containerWidth = imageContainer.clientWidth;
+        const uploadedImage = gridItem.querySelector('.uploaded-image');
+        const imageNaturalWidth = uploadedImage.naturalWidth;
+        const imageNaturalHeight = uploadedImage.naturalHeight;
+        const maxImageHeight = Math.min(maxHeight, imageNaturalHeight, containerHeight);
+        const maxImageWidth = (maxImageHeight / imageNaturalHeight) * imageNaturalWidth;
+
+        // Apply the calculated dimensions to the image
+        uploadedImage.style.width = `${maxImageWidth}px`;
+        uploadedImage.style.height = `${maxImageHeight}px`;
+      }
+    });
+  }
+}
+
+// Call the updateImageSize function on window resize
+window.addEventListener('resize', updateImageSize);
 
 // Add the escape key event listener during the initialization
 document.addEventListener('keydown', handleKeyPress);

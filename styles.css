@@ -65,9 +65,8 @@ img {
 .grid-item {
   text-align: center;
   position: relative;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   color: white;
-  transition: all 500ms ease-in;
 }
 
 .image-container {
@@ -77,7 +76,7 @@ img {
   padding-bottom: 100%;
   position: relative;
   overflow: hidden;
-  transition: all 500ms ease-in;
+  /* transition: all 500ms ease-in; */
   background-color: #f3333311;
   /* background-color: #202123; */
   /* background-color: #575159; */
@@ -85,12 +84,14 @@ img {
 
 .image-container img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: all 500ms ease-in;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  /* transition: all 500ms ease-in; */
 }
 
 /* Hide the file input selector */
@@ -225,7 +226,7 @@ h1{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 100ms ease-in;
+  /* transition: all 100ms ease-in; */
 }
 
 /* Full-screen styles */
@@ -241,18 +242,25 @@ h1{
   display: flex;
   justify-content: center; 
   align-items: center; 
-  transition: all 100ms ease-in;
+  /* transition: all 100ms ease-in; */
 }
 
 
 .grid-item.full-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: all 100ms ease-in;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  /* transition: all 100ms ease-in; */
   background: white;
 }
 
+@media (max-width: 1200px) {
+  .grid-item.full-screen .uploaded-image {
+    width: 100%;
+    height: 100%;
+  }
+}
 /* @media (min-width: 1500px){
   .grid-item.full-screen img {
     max-width: 100%;
