@@ -1,5 +1,5 @@
 # ISSUES
-
+- Single image fullscreen view, left right image rotate, followed by escape: which ever image was penultimate appears slightly zoomed when escaped back in its slot.
 
 # TODO
 

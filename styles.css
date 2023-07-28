@@ -65,9 +65,10 @@ img {
 .grid-item {
   text-align: center;
   position: relative;
-  /* transition: all 0.3s ease; */
   color: white;
   background-color: #f3333311;
+  /* ^^^ bg color when an image is uploaded to the grid */
+  
   /* background-color: #202123; */
   /* background-color: #575159; */
 }
@@ -162,65 +163,46 @@ h1{
   pointer-events: none; 
   cursor: not-allowed; 
 }
-
-
+/* Add Image */
+.upload-label::after{
+  content: attr(data-text-add);
+  transform: rotate(0deg);
+  width: 100%;
+}
 .upload-label{
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 45%;
-  transform: translate(-40%, -50%);
+  top: 0%;
+  bottom: 0;
+  left: 0%;
+  right: 0;
   color: #ddd;
-  background: #552c6a;
+  background: #550555;
+  opacity: .5;
   padding: 5px;
   user-select: none;
   font: clamp(.5rem, .8vw, 1.2rem)/.1rem monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-@media (min-width: 640px){
-  .upload-label{
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 15px 10px;
-  }
-}
+/* 'Swap' label rotated to side of uploaded image */
 .upload-label.image-has-been-uploaded{
   position: absolute;
   z-index: 1;
-  left: -30px;
-  top: 45%;
-  transform: rotate(-90deg);
-  background-color: #12312355;
+  left: 0%;
+  top: 0%;
+  width: 10px;
+  background: #550555;
+  opacity: .5;
   color: #ddd;
   padding: 10px;
 }
-
-@media (min-width: 1300px){
-  .upload-label.image-has-been-uploaded{
-    left: -35px;
-  }
+.image-has-been-uploaded.upload-label::after{
+  content: attr(data-text-swap);
+  transform: rotate(-90deg);
+  width: 100%;
 }
-@media (min-width: 1500px){
-  .upload-label.image-has-been-uploaded{
-    left: -40px;
-  }
-}
-@media (min-width: 1700px){
-  .upload-label.image-has-been-uploaded{
-    left: -45px;
-  }
-}
-@media (min-width: 1850px){
-  .upload-label.image-has-been-uploaded{
-    left: -50px;
-  }
-}
-@media (min-width: 2200px){
-  .upload-label.image-has-been-uploaded{
-    left: -60px;
-  }
-}
-
-
 
 .uploaded-image {
   width: 100%;
@@ -228,6 +210,7 @@ h1{
   object-fit: cover;
   /* transition: all 100ms ease-in; */
 }
+
 
 /* Full-screen styles */
 .grid-item.full-screen {

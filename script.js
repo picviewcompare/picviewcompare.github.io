@@ -192,10 +192,14 @@ function updateUploadLabels() {
     const imageURL = imageArray[index];
     if (imageURL) {
       uploadLabel.classList.add('image-has-been-uploaded');
-      uploadLabel.innerText = "Swap Image";
+
+      uploadLabel.removeAttribute('data-text-add');
+      uploadLabel.setAttribute('data-text-swap', 'Swap');
     } else {
       uploadLabel.classList.remove('image-has-been-uploaded');
-      uploadLabel.innerText = "Add Image";
+
+      uploadLabel.removeAttribute('data-text-swap');
+      uploadLabel.setAttribute('data-text-add', 'Add Image');
     }
   });
   updateNumberedButtons();
