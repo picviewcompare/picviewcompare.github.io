@@ -1,8 +1,8 @@
 .DS_Store
 DEVREADME.md
 notes.js
-tight.js
 archive/*
+archive/
 /archive
 /archive/
 archive/
