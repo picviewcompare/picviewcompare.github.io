@@ -3,7 +3,7 @@
 
 # TODO
 
-
+- refactor code following tight.js reference
 
 
 
