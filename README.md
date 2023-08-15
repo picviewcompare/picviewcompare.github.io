@@ -11,6 +11,8 @@
 
 # TODO
 
+- configure number keys on keyboard as alt to buttons for dual view
+
 - bulk dump 12 files directly into slots
 
 - refactor code (see optimised.js reference)
