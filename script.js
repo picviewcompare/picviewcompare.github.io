@@ -205,6 +205,7 @@ function updateUploadLabels() {
       uploadLabel.classList.remove('image-has-been-uploaded');
 
       uploadLabel.removeAttribute('data-text-swap');
+      uploadLabel.style.fontWeight = "bold";
       uploadLabel.setAttribute('data-text-add', 'Add Image');
     }
   });

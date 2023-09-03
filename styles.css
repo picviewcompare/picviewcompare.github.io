@@ -10,6 +10,9 @@ img {
   position: relative;
   z-index: 1;
 }
+img:not([src]) {
+    display: none;
+}
 
 #imageGrid {
   display: grid;
