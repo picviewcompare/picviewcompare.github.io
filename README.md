@@ -5,8 +5,8 @@
 [Live Site](https://picviewcompare.github.io)
 
 # ISSUES
-- Single image fullscreen view, left right image rotate, followed by escape key, images then appear slightly zoomed in when escaped back into their slots.
-
+- dual view crops the bottom of portrait images
+ 
 - clicking anywhere outside of dual view closes fullscreen but single view fullscreen doesn't (have to click current open image)
 
 # TODO
