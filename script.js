@@ -44,33 +44,37 @@ function handleImageUpload(event) {
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
   const labelElement = gridItem.querySelector('.upload-label');
-  const imageContainer = gridItem.querySelector('.image-container');
+  // const imageContainer = gridItem.querySelector('.image-container');
   const uploadedImage = gridItem.querySelector('.uploaded-image');
 
   if (labelElement.classList.contains('image-has-been-uploaded')) {
     if (!gridItem.classList.contains('full-screen')) {
       gridItem.classList.add('full-screen');
+      
+      // remove vertical scrollbar when modal is open
+      document.body.classList.add("overlayer");
 
       // Calculate the maximum height allowed (1200px) for the image in full-screen mode
-      const maxHeight = 1200;
-      const containerHeight = imageContainer.clientHeight;
-      const containerWidth = imageContainer.clientWidth;
-      const imageNaturalWidth = uploadedImage.naturalWidth;
-      const imageNaturalHeight = uploadedImage.naturalHeight;
-      const maxImageHeight = Math.min(maxHeight, imageNaturalHeight, containerHeight);
-      const maxImageWidth = (maxImageHeight / imageNaturalHeight) * imageNaturalWidth;
+      // const maxHeight = 50;
+      // const containerHeight = imageContainer.clientHeight;
+      // const containerWidth = imageContainer.clientWidth;
+      // const imageNaturalWidth = uploadedImage.naturalWidth;
+      // const imageNaturalHeight = uploadedImage.naturalHeight;
+      // const maxImageHeight = Math.min(maxHeight, imageNaturalHeight, containerHeight);
+      // const maxImageWidth = (maxImageHeight / imageNaturalHeight) * imageNaturalWidth;
 
       // Apply the calculated dimensions to the image
-      uploadedImage.style.width = `${maxImageWidth}px`;
-      uploadedImage.style.height = `${maxImageHeight}px`;
+      // uploadedImage.style.width = `${maxImageWidth}vw`;
+      // uploadedImage.style.height = `${maxImageHeight}vh`;
 
       document.addEventListener('keydown', handleKeyPress);
     } else {
       gridItem.classList.remove('full-screen');
-
+      // reset vertical scrollbar when modal is open
+      document.body.classList.remove("overlayer");
       // Reset to the original dimensions/style
-      uploadedImage.style.width = 'auto'; 
-      uploadedImage.style.height = 'auto';
+      // uploadedImage.style.width = 'auto'; 
+      // uploadedImage.style.height = 'auto';
       
       // document.removeEventListener('keydown', handleKeyPress);
     }
@@ -82,7 +86,7 @@ function updateImageSize() {
   const viewportWidth = window.innerWidth;
   const gridItems = document.querySelectorAll('.grid-item');
 
-  if (viewportWidth < 1200) {
+  if (viewportWidth) {
     gridItems.forEach((gridItem) => {
       if (gridItem.classList.contains('full-screen')) {
         // Calculate the maximum height allowed (100% of the viewport) for the image
@@ -115,12 +119,14 @@ function handleKeyPress(event) {
     if (event.key === 'Escape') {
       const fullscreenImage = document.querySelector('.full-screen .uploaded-image');
       const fullscreenGridItem = fullscreenImage?.closest('.grid-item');
+      // reset vertical scrollbar when modal is open
+      document.body.classList.remove("overlayer");
 
     if (fullscreenGridItem) {
       fullscreenGridItem.classList.remove('full-screen');
 
-      fullscreenImage.style.width = 'auto'; 
-      fullscreenImage.style.height = 'auto';
+      // fullscreenImage.style.width = 'auto'; 
+      // fullscreenImage.style.height = 'auto';
     }
 
     const overlay = document.querySelector('.overlay');
@@ -304,6 +310,9 @@ function handleButtonMouseUp(event) {
 
 
 function openImagesSideBySide(src1, src2) {
+  // remove vertical scrollbar when modal is open
+  document.body.classList.add("overlayer");
+
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
 
@@ -349,6 +358,8 @@ function openImagesSideBySide(src1, src2) {
 
   overlay.addEventListener('click', () => {
     document.body.removeChild(overlay);
+    // reset vertical scrollbar when modal is open
+    document.body.classList.remove("overlayer");
     removeAllSelectedClasses();
   });
 
