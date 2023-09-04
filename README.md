@@ -4,9 +4,7 @@
 ## Add images to the grid for gallery viewing or side by side comparison.
 [Live Site](https://picviewcompare.github.io)
 
-# ISSUES
-- dual view crops the bottom of portrait images
- 
+# ISSUES 
 - clicking anywhere outside of dual view closes fullscreen but single view fullscreen doesn't (have to click current open image)
 
 # TODO
