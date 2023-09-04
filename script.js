@@ -41,27 +41,31 @@ function handleImageUpload(event) {
   }
 }
 
-function toggleFullScreen(imageElement) {
-  const gridItem = imageElement.closest('.grid-item');
-  const labelElement = gridItem.querySelector('.upload-label');
+const gridItems = document.querySelectorAll('.grid-item');
 
-  if (labelElement.classList.contains('image-has-been-uploaded')) {
-    if (!gridItem.classList.contains('full-screen')) {
-      gridItem.classList.add('full-screen');
-      
-      // remove vertical scrollbar when modal is open
-      document.body.classList.add("overlayer");
+gridItems.forEach((gridItem) => {
+  gridItem.addEventListener("click", function (event) {
+    const clickedElement = event.target;
+    const imageContainer = clickedElement.closest('.grid-item');
+    const labelElement = imageContainer.querySelector('.upload-label');
 
-      // document.addEventListener('keydown', handleKeyPress);
-    } else {
-      gridItem.classList.remove('full-screen');
-      // reset vertical scrollbar when modal is open
-      document.body.classList.remove("overlayer");
-      
-      // document.removeEventListener('keydown', handleKeyPress);
+    if (labelElement && labelElement.classList.contains('image-has-been-uploaded')) {
+      if (imageContainer.classList.contains("full-screen")) {
+        imageContainer.classList.remove("full-screen");
+        document.body.classList.remove("overlayer");
+        // Add other actions if needed when fullscreen is closed.
+      } else {
+        imageContainer.classList.add("full-screen");
+        document.body.classList.add("overlayer");
+        // Add other actions if needed when fullscreen is opened.
+      }
     }
-  }
-}
+  });
+});
+
+
+
+
 
 // Function to update the image size based on the window width for viewports below 1200px
 function updateImageSize() {
