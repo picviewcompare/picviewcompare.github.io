@@ -5,7 +5,6 @@
 [Live Site](https://picviewcompare.github.io)
 
 # ISSUES 
-- clicking anywhere outside of dual view closes fullscreen but single view fullscreen doesn't (have to click current open image)
 
 # TODO
 
