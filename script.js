@@ -44,8 +44,6 @@ function handleImageUpload(event) {
 function toggleFullScreen(imageElement) {
   const gridItem = imageElement.closest('.grid-item');
   const labelElement = gridItem.querySelector('.upload-label');
-  // const imageContainer = gridItem.querySelector('.image-container');
-  const uploadedImage = gridItem.querySelector('.uploaded-image');
 
   if (labelElement.classList.contains('image-has-been-uploaded')) {
     if (!gridItem.classList.contains('full-screen')) {
@@ -54,27 +52,11 @@ function toggleFullScreen(imageElement) {
       // remove vertical scrollbar when modal is open
       document.body.classList.add("overlayer");
 
-      // Calculate the maximum height allowed (1200px) for the image in full-screen mode
-      // const maxHeight = 50;
-      // const containerHeight = imageContainer.clientHeight;
-      // const containerWidth = imageContainer.clientWidth;
-      // const imageNaturalWidth = uploadedImage.naturalWidth;
-      // const imageNaturalHeight = uploadedImage.naturalHeight;
-      // const maxImageHeight = Math.min(maxHeight, imageNaturalHeight, containerHeight);
-      // const maxImageWidth = (maxImageHeight / imageNaturalHeight) * imageNaturalWidth;
-
-      // Apply the calculated dimensions to the image
-      // uploadedImage.style.width = `${maxImageWidth}vw`;
-      // uploadedImage.style.height = `${maxImageHeight}vh`;
-
-      document.addEventListener('keydown', handleKeyPress);
+      // document.addEventListener('keydown', handleKeyPress);
     } else {
       gridItem.classList.remove('full-screen');
       // reset vertical scrollbar when modal is open
       document.body.classList.remove("overlayer");
-      // Reset to the original dimensions/style
-      // uploadedImage.style.width = 'auto'; 
-      // uploadedImage.style.height = 'auto';
       
       // document.removeEventListener('keydown', handleKeyPress);
     }
