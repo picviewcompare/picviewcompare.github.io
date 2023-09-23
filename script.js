@@ -64,6 +64,27 @@ gridItems.forEach((gridItem) => {
 });
 
 
+function toggleFullScreen(imageElement) {
+  const gridItem = imageElement.closest('.grid-item');
+  const labelElement = gridItem.querySelector('.upload-label');
+
+  if (labelElement.classList.contains('image-has-been-uploaded')) {
+    if (!gridItem.classList.contains('full-screen')) {
+      gridItem.classList.add('full-screen');
+      
+      // remove vertical scrollbar when modal is open
+      document.body.classList.add("overlayer");
+
+      // document.addEventListener('keydown', handleKeyPress);
+    } else {
+      gridItem.classList.remove('full-screen');
+      // reset vertical scrollbar when modal is open
+      document.body.classList.remove("overlayer");
+      
+      // document.removeEventListener('keydown', handleKeyPress);
+    }
+  }
+}
 
 
 
