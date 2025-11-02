@@ -305,8 +305,6 @@ h1{
   display: flex;
   justify-content: space-around;
   width: 100%;
-  /* add the following to stick the images together in the center of the fullscreen modal overlay */
-  max-width: 1000px;
   margin: 0 auto;
 }
 
