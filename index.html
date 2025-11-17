@@ -10,9 +10,9 @@
   <title>Pic View Compare - Image Viewer</title>
 </head>
 <body>
+<button id="fullscreenBtn">Go Fullscreen</button>
 
-<div class="action-buttons">
-  <!-- <div id="printViewportWidth"></div> -->
+ <!-- <div id="printViewportWidth"></div> -->
   <!-- <h1>Image Viewer</h1> -->
   <div class="github">  
     <a href="https://github.com/picviewcompare" target="_blank">
@@ -20,7 +20,11 @@
     </a>
   </div>
 
+
+<div class="action-buttons">
+ 
   <div id="buttonContainer">
+
   <!-- Buttons will be added here dynamically -->
   </div>
 </div>
@@ -137,6 +141,29 @@
     </div>
 
   </div><!-- \imageGrid -->
+
+<script>
+
+const fsBtn = document.getElementById("fullscreenBtn");
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+fsBtn.addEventListener("click", toggleFullscreen);
+
+document.addEventListener("fullscreenchange", () => {
+  fsBtn.textContent = document.fullscreenElement
+    ? ""
+    : "Go Fullscreen";
+});
+
+
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

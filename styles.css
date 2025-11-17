@@ -98,7 +98,7 @@ img:not([src]) {
 .action-buttons{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-top: -14px;
   margin-bottom: 5px;
@@ -324,18 +324,36 @@ h1{
 }
 
 
-/* github svg */
-.github {
-  align-self: center;
-  /* margin: 40px 0 80px; */
-}
-.github img{
-  width: 30px;
-  height: auto;
-}
 
 @media (min-width: 769px){
   .github {
     margin: 0px 0px 0px;
   }
+}
+
+#fullscreenBtn {
+  position: fixed;
+  z-index: 99999;
+  top: 8px;
+  left: 30px;
+  padding: 5px 8px;
+  font-size: .8rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0px solid black;
+}
+
+
+/* github svg */
+.github {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  left: 0px;
+  padding: 5px 8px;
+  font-size: .8rem;
+}
+.github img{
+  width: 20px;
+  height: auto;
 }
