@@ -143,7 +143,6 @@
   </div><!-- \imageGrid -->
 
 <script>
-
 const fsBtn = document.getElementById("fullscreenBtn");
 
 function toggleFullscreen() {
@@ -157,11 +156,18 @@ function toggleFullscreen() {
 fsBtn.addEventListener("click", toggleFullscreen);
 
 document.addEventListener("fullscreenchange", () => {
-  fsBtn.textContent = document.fullscreenElement
-    ? ""
-    : "Go Fullscreen";
+  if (document.fullscreenElement) {
+    fsBtn.textContent = "";
+    fsBtn.style.background = "transparent";
+    fsBtn.style.color = "transparent"; // hides text if any font fallback
+    fsBtn.style.borderColor = "transparent";
+  } else {
+    fsBtn.textContent = "Go Fullscreen";
+    fsBtn.style.background = "white";
+    fsBtn.style.color = "black";
+    fsBtn.style.borderColor = "black";
+  }
 });
-
 
   </script>
   <script src="script.js"></script>

@@ -339,8 +339,9 @@ h1{
   padding: 5px 8px;
   font-size: .8rem;
   cursor: pointer;
-  background: transparent;
+  background: white;
   border: 0px solid black;
+  transition: all .25s ease;
 }
 
 
